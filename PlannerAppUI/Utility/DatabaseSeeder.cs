@@ -12,8 +12,8 @@ namespace PlannerApplication.Utility
                 var users = userRepo.GetUsers();
                 if (users.Count == 0)
                 {
-                    User adminUser = new User("admin", "password123");
-                    User devUser = new User("developer", "password123");
+                    User adminUser = new User("admin", SecurityHelper.HashSecret("password123"), SecurityHelper.HashSecret("123456"));
+                    User devUser = new User("developer", SecurityHelper.HashSecret("password123"), SecurityHelper.HashSecret("654321"));
                     userRepo.AddUser(adminUser);
                     userRepo.AddUser(devUser);
                     users = userRepo.GetUsers();

@@ -25,5 +25,17 @@ namespace PlannerApplication.Repositories
             users = userjson.GetUsers();
             return users;
         }
+
+        public void UpdateUser(User updatedUser)
+        {
+            if (updatedUser == null) return;
+            users = userjson.GetUsers();
+            int idx = users.FindIndex(u => u.Id == updatedUser.Id);
+            if (idx >= 0)
+            {
+                users[idx] = updatedUser;
+                userjson.SaveUsers(users);
+            }
+        }
     }
 }
