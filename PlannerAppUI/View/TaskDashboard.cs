@@ -412,25 +412,64 @@ namespace PlannerApplication.View
             }
         }
 
-        private void DrawTaskCard(int x, int y, int width, ToDoTask task, bool isSelected)
+        public static bool IsTaskOverdue(ToDoTask task, DateOnly? todayDate = null)
         {
-            ConsoleColor fg = isSelected ? ConsoleColor.Blue : ConsoleColor.White;
-            string prefix = isSelected ? "\u25BA " : "  ";
+            if (task == null) return false;
+            DateOnly today = todayDate ?? DateOnly.FromDateTime(DateTime.Today);
 
-            // Line 1: Name
-            string name = ConsoleUI.Truncate(prefix + task.Name, width - 2);
-            ConsoleUI.WriteAt(x + 1, y, name, fg);
-
-            // Line 2: Assignee and due date
-            string assignee = "Unassigned";
-            if (task.UserId.HasValue && task.UserId.Value != Guid.Empty)
+            if (task.Status == TaskState.NotStarted && task.TargetStartDate < today)
             {
-                var user = _projectService.GetUserById(task.UserId.Value);
-                if (user != null) assignee = user.Name;
+                return true;
             }
 
-            string meta = $"  \uD83D\uDC64 {ConsoleUI.Truncate(assignee, 10)}  \uD83D\uDCC5 {task.TargetEndDate:MM-dd}";
-            ConsoleUI.WriteAt(x + 1, y + 1, ConsoleUI.Truncate(meta, width - 2), ConsoleColor.DarkGray);
+            if (task.Status == TaskState.InProgress && task.TargetEndDate < today)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void DrawTaskCard(int x, int y, int width, ToDoTask task, bool isSelected)
+        {
+            ConsoleColor originalFg = Console.ForegroundColor;
+            try
+            {
+                bool isOverdue = IsTaskOverdue(task);
+                ConsoleColor fg;
+                if (isOverdue)
+                {
+                    fg = ConsoleColor.Red;
+                }
+                else
+                {
+                    fg = isSelected ? ConsoleColor.Blue : ConsoleColor.White;
+                }
+
+                Console.ForegroundColor = fg;
+
+                string prefix = isSelected ? "\u25BA " : "  ";
+
+                // Line 1: Name
+                string name = ConsoleUI.Truncate(prefix + task.Name, width - 2);
+                ConsoleUI.WriteAt(x + 1, y, name, fg);
+
+                // Line 2: Assignee and due date
+                string assignee = "Unassigned";
+                if (task.UserId.HasValue && task.UserId.Value != Guid.Empty)
+                {
+                    var user = _projectService.GetUserById(task.UserId.Value);
+                    if (user != null) assignee = user.Name;
+                }
+
+                string meta = $"  \uD83D\uDC64 {ConsoleUI.Truncate(assignee, 10)}  \uD83D\uDCC5 {task.TargetEndDate:MM-dd}";
+                ConsoleColor metaColor = isOverdue ? ConsoleColor.Red : ConsoleColor.DarkGray;
+                ConsoleUI.WriteAt(x + 1, y + 1, ConsoleUI.Truncate(meta, width - 2), metaColor);
+            }
+            finally
+            {
+                Console.ForegroundColor = originalFg;
+            }
         }
 
         public void DrawBoundary()
@@ -781,6 +820,7 @@ namespace PlannerApplication.View
 
             ConsoleUI.WriteAt(startX + 4, startY + 4, $"Title       : {ConsoleUI.Truncate(task.Name, 44)}", ConsoleColor.White);
 
+            bool isOverdue = IsTaskOverdue(task);
             string statusStr = task.Status switch
             {
                 TaskState.NotStarted => "Not Started",
@@ -788,7 +828,11 @@ namespace PlannerApplication.View
                 TaskState.Completed => "Completed",
                 _ => task.Status.ToString()
             };
-            ConsoleColor statusCol = task.Status switch
+            if (isOverdue)
+            {
+                statusStr += " (Overdue)";
+            }
+            ConsoleColor statusCol = isOverdue ? ConsoleColor.Red : task.Status switch
             {
                 TaskState.NotStarted => ConsoleColor.Red,
                 TaskState.InProgress => ConsoleColor.Yellow,
@@ -806,8 +850,10 @@ namespace PlannerApplication.View
             }
             ConsoleUI.WriteAt(startX + 4, startY + 8, $"Assignee    : {assignee}", ConsoleColor.White);
 
-            ConsoleUI.WriteAt(startX + 4, startY + 10, $"Start Date  : {task.TargetStartDate:yyyy-MM-dd}", ConsoleColor.White);
-            ConsoleUI.WriteAt(startX + 32, startY + 10, $"End Date : {task.TargetEndDate:yyyy-MM-dd}", ConsoleColor.White);
+            ConsoleColor startCol = (task.Status == TaskState.NotStarted && isOverdue) ? ConsoleColor.Red : ConsoleColor.White;
+            ConsoleColor endCol = (task.Status == TaskState.InProgress && isOverdue) ? ConsoleColor.Red : ConsoleColor.White;
+            ConsoleUI.WriteAt(startX + 4, startY + 10, $"Start Date  : {task.TargetStartDate:yyyy-MM-dd}", startCol);
+            ConsoleUI.WriteAt(startX + 32, startY + 10, $"End Date : {task.TargetEndDate:yyyy-MM-dd}", endCol);
 
             string desc = string.IsNullOrWhiteSpace(task.Description) ? "(No description provided)" : task.Description;
             ConsoleUI.WriteAt(startX + 4, startY + 12, $"Description : {ConsoleUI.Truncate(desc, 44)}", ConsoleColor.Gray);

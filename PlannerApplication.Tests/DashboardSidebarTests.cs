@@ -114,5 +114,110 @@ namespace PlannerApplication.Tests
             Assert.Equal("Zeta Project", sortedByTasks[0].ProjectName); // 2 tasks
             Assert.Equal("Alpha Project", sortedByTasks[1].ProjectName); // 0 tasks
         }
+
+        [Fact]
+        public void IsTaskOverdue_NotStarted_StartDatePassed_ReturnsTrue()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Overdue Not Started",
+                Status = TaskState.NotStarted,
+                TargetStartDate = new DateOnly(2026, 10, 18), // passed
+                TargetEndDate = new DateOnly(2026, 10, 25)
+            };
+
+            Assert.True(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_NotStarted_StartDateToday_ReturnsFalse()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Today Not Started",
+                Status = TaskState.NotStarted,
+                TargetStartDate = new DateOnly(2026, 10, 19), // today boundary
+                TargetEndDate = new DateOnly(2026, 10, 25)
+            };
+
+            Assert.False(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_NotStarted_StartDateFuture_ReturnsFalse()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Future Not Started",
+                Status = TaskState.NotStarted,
+                TargetStartDate = new DateOnly(2026, 10, 20), // tomorrow
+                TargetEndDate = new DateOnly(2026, 10, 25)
+            };
+
+            Assert.False(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_InProgress_EndDatePassed_ReturnsTrue()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Overdue In Progress",
+                Status = TaskState.InProgress,
+                TargetStartDate = new DateOnly(2026, 10, 10),
+                TargetEndDate = new DateOnly(2026, 10, 18) // passed
+            };
+
+            Assert.True(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_InProgress_EndDateToday_ReturnsFalse()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Today In Progress",
+                Status = TaskState.InProgress,
+                TargetStartDate = new DateOnly(2026, 10, 10),
+                TargetEndDate = new DateOnly(2026, 10, 19) // today boundary
+            };
+
+            Assert.False(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_InProgress_EndDateFuture_ReturnsFalse()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Future In Progress",
+                Status = TaskState.InProgress,
+                TargetStartDate = new DateOnly(2026, 10, 10), // start date passed
+                TargetEndDate = new DateOnly(2026, 10, 25)   // end date not passed
+            };
+
+            Assert.False(TaskDashboard.IsTaskOverdue(task, today));
+        }
+
+        [Fact]
+        public void IsTaskOverdue_Completed_DatesPassed_ReturnsFalse()
+        {
+            DateOnly today = new DateOnly(2026, 10, 19);
+            var task = new ToDoTask
+            {
+                Name = "Completed Task",
+                Status = TaskState.Completed,
+                TargetStartDate = new DateOnly(2026, 10, 1),
+                TargetEndDate = new DateOnly(2026, 10, 10)
+            };
+
+            Assert.False(TaskDashboard.IsTaskOverdue(task, today));
+        }
     }
 }
