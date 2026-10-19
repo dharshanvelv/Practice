@@ -13,7 +13,7 @@ namespace PlannerApplication.View
         private readonly TaskService _taskService;
         private readonly TaskDashboard _taskDashboard;
 
-        private readonly string[] menu = { "Open Project", "Create Project", "Edit Project", "Delete Project", "Manage Members", "Logout" };
+        private readonly string[] menu = { "Create Project", "Filter Projects", "Sort Projects", "Logout" };
 
         private int SearchBoxCursorX => ConsoleUI.WindowWidth - 22;
         private int SearchBoxCursorY => 3;
@@ -42,6 +42,7 @@ namespace PlannerApplication.View
             int sidebarIndex = 0;
             int projectIndex = 0;
             string searchFilter = string.Empty;
+            string currentSort = "Name"; // "Name", "Date", "Tasks"
             string statusMessage = string.Empty;
             bool isStatusError = false;
 
@@ -56,6 +57,13 @@ namespace PlannerApplication.View
                         p.ProjectDescription.Contains(searchFilter, StringComparison.OrdinalIgnoreCase)
                     ).ToList();
 
+                displayProjects = currentSort switch
+                {
+                    "Date" => displayProjects.OrderByDescending(p => p.CreatedDate).ToList(),
+                    "Tasks" => displayProjects.OrderByDescending(p => _projectService.GetProjectTaskStats(p.ProjectId).Total).ToList(),
+                    _ => displayProjects.OrderBy(p => p.ProjectName, StringComparer.OrdinalIgnoreCase).ToList()
+                };
+
                 if (displayProjects.Count == 0 && currentFocus == FocusArea.ProjectList)
                 {
                     currentFocus = FocusArea.Sidebar;
@@ -66,16 +74,16 @@ namespace PlannerApplication.View
                     projectIndex = Math.Max(0, displayProjects.Count - 1);
                 }
 
-                DrawProjectMenuLayout(currentUserName, searchFilter);
+                DrawProjectMenuLayout(currentUserName, searchFilter, currentSort);
                 DrawSidebarMenu(sidebarIndex, currentFocus == FocusArea.Sidebar);
                 DrawContentMenu(displayProjects, projectIndex, currentFocus == FocusArea.ProjectList);
 
                 // Show status / shortcut help
                 string helpText = currentFocus switch
                 {
-                    FocusArea.Sidebar => "[↑/↓] Select Action  [→] Go to Projects  [Enter] Execute  [Esc] Logout",
-                    FocusArea.ProjectList => "[↑/↓] Select Project  [←] Sidebar  [→] Search  [Enter] Open  [C] Create  [D] Delete",
-                    FocusArea.SearchBox => "[Enter] Search  [Esc] Clear/Exit Search  [←] Projects",
+                    FocusArea.Sidebar => "[↑/↓] Action  [→] Projects  [Enter] Select  [Esc] Logout",
+                    FocusArea.ProjectList => "[↑/↓] Select Project  [Enter] Open  [E] Edit  [M] Members  [D] Delete  [S] Sort  [←] Sidebar  [→] Search",
+                    FocusArea.SearchBox => "[Enter] Apply Search  [Esc] Cancel  [←] Projects",
                     _ => ""
                 };
                 ConsoleUI.ShowStatusBar(helpText, statusMessage, isStatusError);
@@ -107,7 +115,7 @@ namespace PlannerApplication.View
                             break;
 
                         case ConsoleKey.Enter:
-                            ExecuteSidebarAction(sidebarIndex, displayProjects, projectIndex, currentUser, ref statusMessage, ref isStatusError, ref isPageRunning, ref currentFocus);
+                            ExecuteSidebarAction(sidebarIndex, currentUser, ref searchFilter, ref currentSort, ref statusMessage, ref isStatusError, ref isPageRunning, ref currentFocus);
                             break;
 
                         case ConsoleKey.Escape:
@@ -152,24 +160,41 @@ namespace PlannerApplication.View
                             break;
 
                         case ConsoleKey.E:
-                            if (displayProjects.Count > 0)
+                            if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
                             {
                                 EditProjectModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
                             }
                             break;
 
                         case ConsoleKey.D:
-                            if (displayProjects.Count > 0)
+                        case ConsoleKey.Delete:
+                            if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
                             {
                                 DeleteProjectModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
                             }
                             break;
 
                         case ConsoleKey.M:
-                            if (displayProjects.Count > 0)
+                        case ConsoleKey.U:
+                            if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
                             {
                                 ManageMembersModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
                             }
+                            break;
+
+                        case ConsoleKey.S:
+                            currentSort = currentSort switch
+                            {
+                                "Name" => "Date",
+                                "Date" => "Tasks",
+                                "Tasks" => "Name",
+                                _ => "Name"
+                            };
+                            statusMessage = $"Projects sorted by: {currentSort}";
+                            break;
+
+                        case ConsoleKey.F:
+                            currentFocus = FocusArea.SearchBox;
                             break;
 
                         case ConsoleKey.Escape:
@@ -191,7 +216,11 @@ namespace PlannerApplication.View
                     ConsoleUI.SafeSetCursorPosition(SearchBoxCursorX, SearchBoxCursorY);
                     string query = ConsoleUI.ReadTextInput(SearchBoxCursorX, SearchBoxCursorY, 18, searchFilter, allowEscape: true);
 
-                    searchFilter = query.Trim();
+                    if (query != null)
+                    {
+                        searchFilter = query.Trim();
+                        statusMessage = string.IsNullOrEmpty(searchFilter) ? "Search filter cleared" : $"Filter applied: '{searchFilter}'";
+                    }
                     currentFocus = FocusArea.ProjectList;
                     projectIndex = 0;
                 }
@@ -200,9 +229,9 @@ namespace PlannerApplication.View
 
         private void ExecuteSidebarAction(
             int actionIndex,
-            List<Project> displayProjects,
-            int projectIndex,
             User? currentUser,
+            ref string searchFilter,
+            ref string currentSort,
             ref string statusMessage,
             ref bool isStatusError,
             ref bool isPageRunning,
@@ -210,61 +239,26 @@ namespace PlannerApplication.View
         {
             switch (actionIndex)
             {
-                case 0: // Open Project
-                    if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
-                    {
-                        var selectedProject = displayProjects[projectIndex];
-                        _taskDashboard.DisplayDashboard(currentUser, selectedProject);
-                    }
-                    else
-                    {
-                        statusMessage = "No project selected to open";
-                        isStatusError = true;
-                        currentFocus = FocusArea.ProjectList;
-                    }
-                    break;
-
-                case 1: // Create Project
+                case 0: // Create Project
                     CreateProjectModal(currentUser, ref statusMessage, ref isStatusError);
                     break;
 
-                case 2: // Edit Project
-                    if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
-                    {
-                        EditProjectModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a project first to edit";
-                        isStatusError = true;
-                    }
+                case 1: // Filter Projects
+                    currentFocus = FocusArea.SearchBox;
                     break;
 
-                case 3: // Delete Project
-                    if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
+                case 2: // Sort Projects
+                    currentSort = currentSort switch
                     {
-                        DeleteProjectModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a project first to delete";
-                        isStatusError = true;
-                    }
+                        "Name" => "Date",
+                        "Date" => "Tasks",
+                        "Tasks" => "Name",
+                        _ => "Name"
+                    };
+                    statusMessage = $"Projects sorted by: {currentSort}";
                     break;
 
-                case 4: // Manage Members
-                    if (displayProjects.Count > 0 && projectIndex >= 0 && projectIndex < displayProjects.Count)
-                    {
-                        ManageMembersModal(displayProjects[projectIndex], currentUser, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a project first to manage members";
-                        isStatusError = true;
-                    }
-                    break;
-
-                case 5: // Logout
+                case 3: // Logout
                     if (ConsoleUI.ShowConfirmation("Logout", "Are you sure you want to log out?"))
                     {
                         isPageRunning = false;
@@ -273,16 +267,16 @@ namespace PlannerApplication.View
             }
         }
 
-        public void DrawProjectMenuLayout(string username = "", string searchFilter = "")
+        public void DrawProjectMenuLayout(string username = "", string searchFilter = "", string currentSort = "")
         {
             Console.Clear();
             DrawBoundary();
             DrawSidebarLine();
-            DrawHeader(username);
+            DrawHeader(username, currentSort);
             DrawSearchBox(searchFilter);
         }
 
-        private void DrawHeader(string username)
+        private void DrawHeader(string username, string currentSort = "")
         {
             string appTitle = "PLANNER APP  |  Projects";
             ConsoleUI.WriteAt(3, 1, $" {appTitle} ", ConsoleColor.Cyan);
@@ -292,6 +286,16 @@ namespace PlannerApplication.View
                 string userTag = $" \uD83D\uDC64 User: {username} ";
                 int userX = SidebarWidth + 3;
                 ConsoleUI.WriteAt(userX, 1, userTag, ConsoleColor.Yellow);
+            }
+
+            if (!string.IsNullOrEmpty(currentSort))
+            {
+                string sortTag = $"Sort: {currentSort}";
+                int sortX = ConsoleUI.WindowWidth - 45;
+                if (sortX > SidebarWidth + 20)
+                {
+                    ConsoleUI.WriteAt(sortX, 1, sortTag, ConsoleColor.DarkGray);
+                }
             }
         }
 

@@ -15,10 +15,6 @@ namespace PlannerApplication.View
         private readonly string[] menu =
         {
             "Add Task",
-            "Move Status",
-            "Edit Task",
-            "Delete Task",
-            "Assign User",
             "Filter Tasks",
             "Sort Tasks",
             "Back to Projects"
@@ -87,7 +83,7 @@ namespace PlannerApplication.View
                 // Show status / shortcut help
                 string helpText = currentFocus == FocusArea.Sidebar
                     ? "[↑/↓] Action  [→] Board  [Enter] Select  [Esc] Back"
-                    : "[←/→] Column  [↑/↓] Task  [Enter] Details  [M] Move  [+] Add  [E] Edit  [D] Delete  [Esc] Sidebar";
+                    : "[←/→] Col  [↑/↓] Task  [Enter] Details  [E] Edit  [M] Move  [U] Assign  [D] Delete  [+] Add  [Esc] Sidebar";
 
                 ConsoleUI.ShowStatusBar(helpText, statusMessage, isStatusError);
                 statusMessage = string.Empty;
@@ -114,9 +110,7 @@ namespace PlannerApplication.View
                                 sidebarIndex,
                                 project,
                                 currentUser,
-                                columns,
                                 selectedColumn,
-                                columnTaskIndex[selectedColumn],
                                 ref searchFilter,
                                 ref currentSort,
                                 ref statusMessage,
@@ -255,9 +249,7 @@ namespace PlannerApplication.View
             int actionIndex,
             Project project,
             User? currentUser,
-            List<ToDoTask>[] columns,
             int selectedColumn,
-            int selectedTaskIndex,
             ref string searchFilter,
             ref string currentSort,
             ref string statusMessage,
@@ -265,70 +257,17 @@ namespace PlannerApplication.View
             ref bool isRunning,
             ref FocusArea currentFocus)
         {
-            var activeColumnTasks = columns[selectedColumn];
-            ToDoTask? selectedTask = (activeColumnTasks.Count > 0 && selectedTaskIndex < activeColumnTasks.Count)
-                ? activeColumnTasks[selectedTaskIndex]
-                : null;
-
             switch (actionIndex)
             {
                 case 0: // Add Task
                     AddTaskModal(project, currentUser, (TaskState)selectedColumn, ref statusMessage, ref isStatusError);
                     break;
 
-                case 1: // Move Status
-                    if (selectedTask != null)
-                    {
-                        QuickMoveTaskModal(selectedTask, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a task first to move its status";
-                        isStatusError = true;
-                    }
-                    break;
-
-                case 2: // Edit Task
-                    if (selectedTask != null)
-                    {
-                        EditTaskModal(selectedTask, project, currentUser, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a task first to edit";
-                        isStatusError = true;
-                    }
-                    break;
-
-                case 3: // Delete Task
-                    if (selectedTask != null)
-                    {
-                        DeleteTaskModal(selectedTask, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a task first to delete";
-                        isStatusError = true;
-                    }
-                    break;
-
-                case 4: // Assign User
-                    if (selectedTask != null)
-                    {
-                        AssignUserModal(selectedTask, project, ref statusMessage, ref isStatusError);
-                    }
-                    else
-                    {
-                        statusMessage = "Select a task first to assign a user";
-                        isStatusError = true;
-                    }
-                    break;
-
-                case 5: // Filter Tasks
+                case 1: // Filter Tasks
                     FilterTasksModal(ref searchFilter, ref statusMessage);
                     break;
 
-                case 6: // Sort Tasks
+                case 2: // Sort Tasks
                     currentSort = currentSort switch
                     {
                         "StartDate" => "EndDate",
@@ -339,7 +278,7 @@ namespace PlannerApplication.View
                     statusMessage = $"Tasks sorted by: {currentSort}";
                     break;
 
-                case 7: // Back to Projects
+                case 3: // Back to Projects
                     isRunning = false;
                     break;
             }
@@ -393,7 +332,7 @@ namespace PlannerApplication.View
         public void DrawSidebarMenu(int select, bool hasFocus = true)
         {
             Console.CursorVisible = false;
-            ConsoleUI.WriteAt(3, 3, "KANBAN MENU", ConsoleColor.DarkGray);
+            ConsoleUI.WriteAt(3, 3, "ACTIONS", ConsoleColor.DarkGray);
 
             for (int i = 0; i < menu.Length; i++)
             {
@@ -873,7 +812,7 @@ namespace PlannerApplication.View
             string desc = string.IsNullOrWhiteSpace(task.Description) ? "(No description provided)" : task.Description;
             ConsoleUI.WriteAt(startX + 4, startY + 12, $"Description : {ConsoleUI.Truncate(desc, 44)}", ConsoleColor.Gray);
 
-            ConsoleUI.WriteAt(startX + 4, startY + 15, "[M] Move Status   [E] Edit   [D] Delete   [Esc] Close", ConsoleColor.DarkCyan);
+            ConsoleUI.WriteAt(startX + 4, startY + 15, "[M] Move Status  [E] Edit  [U] Assign  [D] Delete  [Esc] Close", ConsoleColor.DarkCyan);
 
             while (true)
             {
@@ -892,7 +831,12 @@ namespace PlannerApplication.View
                     EditTaskModal(task, project, currentUser, ref statusMessage, ref isStatusError);
                     break;
                 }
-                if (key == ConsoleKey.D)
+                if (key == ConsoleKey.U)
+                {
+                    AssignUserModal(task, project, ref statusMessage, ref isStatusError);
+                    break;
+                }
+                if (key == ConsoleKey.D || key == ConsoleKey.Delete)
                 {
                     DeleteTaskModal(task, ref statusMessage, ref isStatusError);
                     break;
