@@ -1,14 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\",
+  "WorkspaceRootPath": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C7145D0-2F5F-4304-84AA-A9A9F1AADCCE}|PlannerAppUI\\PlannerAppUI.csproj|c:\\users\\dhars\\desktop\\personal practice projects\\plannerapp ui\\plannerappui\\plannerappui\\authmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C7145D0-2F5F-4304-84AA-A9A9F1AADCCE}|PlannerAppUI\\PlannerAppUI.csproj|solutionrelative:plannerappui\\authmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\view\\taskdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\view\\taskdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C7145D0-2F5F-4304-84AA-A9A9F1AADCCE}|PlannerAppUI\\PlannerAppUI.csproj|c:\\users\\dhars\\desktop\\personal practice projects\\plannerapp ui\\plannerappui\\plannerappui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C7145D0-2F5F-4304-84AA-A9A9F1AADCCE}|PlannerAppUI\\PlannerAppUI.csproj|solutionrelative:plannerappui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\view\\projectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\view\\projectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\view\\authmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\view\\authmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\view\\taskmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\view\\taskmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\models\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\models\\todotask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\services\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\services\\userresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\services\\userresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|c:\\users\\dhars\\desktop\\antiplan\\plannerapp ui\\plannerappui\\plannerappui\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7171B1EB-6F17-7A52-A45F-A76D0F89A052}|PlannerAppUI\\PlannerApplication.csproj|solutionrelative:plannerappui\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,33 +50,131 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthMenu.cs",
-              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\AuthMenu.cs",
-              "RelativeDocumentMoniker": "PlannerAppUI\\AuthMenu.cs",
-              "ToolTip": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\AuthMenu.cs",
-              "RelativeToolTip": "PlannerAppUI\\AuthMenu.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAcwJwAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ToDoTask.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Models\\ToDoTask.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Models\\ToDoTask.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Models\\ToDoTask.cs",
+              "RelativeToolTip": "PlannerAppUI\\Models\\ToDoTask.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwCYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T17:43:02.023Z",
+              "WhenOpened": "2026-10-18T17:11:10.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TaskDashboard.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\TaskDashboard.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\View\\TaskDashboard.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\TaskDashboard.cs",
+              "RelativeToolTip": "PlannerAppUI\\View\\TaskDashboard.cs",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAuwPkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T16:29:27.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskMenu.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\TaskMenu.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\View\\TaskMenu.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\TaskMenu.cs",
+              "RelativeToolTip": "PlannerAppUI\\View\\TaskMenu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T04:42:19.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthMenu.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\AuthMenu.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\View\\AuthMenu.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\AuthMenu.cs",
+              "RelativeToolTip": "PlannerAppUI\\View\\AuthMenu.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswCQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T04:38:48.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Program.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Program.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Program.cs",
+              "RelativeToolTip": "PlannerAppUI\\Program.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T17:42:38.283Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Program.cs",
-              "RelativeDocumentMoniker": "PlannerAppUI\\Program.cs",
-              "ToolTip": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Program.cs",
-              "RelativeToolTip": "PlannerAppUI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
+              "Title": "ProjectMenu.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\ProjectMenu.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\View\\ProjectMenu.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\View\\ProjectMenu.cs",
+              "RelativeToolTip": "PlannerAppUI\\View\\ProjectMenu.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAADwv3gAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T17:42:38.283Z",
+              "WhenOpened": "2026-10-18T04:53:51.454Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserResult.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\UserResult.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Services\\UserResult.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\UserResult.cs",
+              "RelativeToolTip": "PlannerAppUI\\Services\\UserResult.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T04:37:06.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Project.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Models\\Project.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Models\\Project.cs",
+              "RelativeToolTip": "PlannerAppUI\\Models\\Project.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T04:44:52.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProjectService.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\ProjectService.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Services\\ProjectService.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\ProjectService.cs",
+              "RelativeToolTip": "PlannerAppUI\\Services\\ProjectService.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAawDAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T08:05:27.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "PlannerAppUI\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\Services\\AuthService.cs",
+              "RelativeToolTip": "PlannerAppUI\\Services\\AuthService.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwCEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-18T04:33:06.917Z"
             }
           ]
         }

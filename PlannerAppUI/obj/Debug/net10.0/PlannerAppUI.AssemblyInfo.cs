@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlannerAppUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+327f9944b29f886d01c64a429046ce6450cfdb4f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlannerAppUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlannerAppUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

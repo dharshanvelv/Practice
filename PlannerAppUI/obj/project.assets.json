@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\PlannerAppUI.csproj",
-      "projectName": "PlannerAppUI",
-      "projectPath": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\PlannerAppUI.csproj",
+      "projectUniqueName": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\PlannerApplication.csproj",
+      "projectName": "PlannerApplication",
+      "projectPath": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\PlannerApplication.csproj",
       "packagesPath": "C:\\Users\\dhars\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dhars\\Desktop\\Personal Practice projects\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\obj\\",
+      "outputPath": "C:\\Users\\dhars\\Desktop\\AntiPlan\\PlannerApp UI\\PlannerAppUI\\PlannerAppUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dhars\\AppData\\Roaming\\NuGet\\NuGet.Config",
